@@ -3,7 +3,7 @@
 mov ah, 0x0e ;scrolling teletype BIOS routine
 
 mov al, 'H'
-int 0x10
+int 0x10    ;0x10 is interrupt for screen related devices
 mov al, 'e'
 int 0x10
 mov al, 'l'
