@@ -1,6 +1,6 @@
 Plan:
-1. Set the environment
-2. Make the Bootloader for 16bit system
+~~1. Set the environment~~
+~~2. Make the Bootloader for 16bit system~~
 3. Make the boot loader available for 32bit
 4. Write and build the Kernel
 5. Load Kernel
