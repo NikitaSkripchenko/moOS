@@ -5,10 +5,14 @@ call print
 
 call print_nl
 
+mov dx, 0x1e22
+call print_hex
+
 jmp $
 ; 
 
 %include "boot_sect_print.asm"
+%include "boot_sect_print_hex.asm"
 GREETINGS:
     db "Hello, greedy world", 0
 

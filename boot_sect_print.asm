@@ -4,20 +4,20 @@ print:
 
 ; while (string[i] != 0) { print string[i]; i++ }
 
-start:
+start1:
     mov al, [bx]
     cmp al, 0
 
-    je end
+    je end1
 
     mov ah, 0x0e
     int 0x10
 
     add bx, 1
-    jmp start
+    jmp start1
 
 
-end:
+end1:
     popa
     ret
 
