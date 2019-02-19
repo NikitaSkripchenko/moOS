@@ -14,7 +14,7 @@ You need:
 - qemu (brew install qemu)
 
 to compile:
-nasm -f boot_sect.asm -o boot_sect.bin
+nasm -f <file_name>.asm -o <file_name>.bin
 
 to run with qemu:
-qemu-system-x86_64 boot_sect.bin
+qemu-system-x86_64 <file_name>.bin
