@@ -1,29 +1,26 @@
-; The formula for accessing a specific character on the 80x25 grid is: 0xb8000 + 2 * (row * 80 + col)
-[bits 32]
-; Define some constants 
+[bits 32] ; using 32-bit protected mode
+
+; this is how constants are defined
 VIDEO_MEMORY equ 0xb8000
-WHITE_ON_BLACK equ 0x0f
-; prints a null-terminated string pointed to by EDX
+WHITE_ON_BLACK equ 0x0f ; the color byte for each character
+
 print_string_pm:
     pusha
-    mov edx, VIDEO_MEMORY ; Set edx to the start of vid mem.
+    mov edx, VIDEO_MEMORY
 
 print_string_pm_loop:
-    mov al, [ebx] ; Store the char at EBX in AL 
-    mov ah, WHITE_ON_BLACK ; Store the attributes in AH
+    mov al, [ebx] ; [ebx] is the address of our character
+    mov ah, WHITE_ON_BLACK
 
-    cmp al, 0 
+    cmp al, 0 ; check if end of string
     je print_string_pm_done
 
-    mov [edx], ax
-    add ebx, 1
-    add edx, 2
-; if (al == 0), at end of string, so ; jump to done
-; Store char and attributes at current
-; character cell.
-; Increment EBX to the next char in string. ; Move to next character cell in vid mem.
-    jmp print_string_pm_loop ; loop around to print the next char.
+    mov [edx], ax ; store character + attribute in video memory
+    add ebx, 1 ; next char
+    add edx, 2 ; next video memory position
 
-print_string_pm_done :
+    jmp print_string_pm_loop
+
+print_string_pm_done:
     popa
-    ret ; Return from the function
+    ret
